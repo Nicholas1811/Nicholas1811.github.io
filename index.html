@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Belieber Hub — Unofficial Justin Bieber Fanpage</title>
+  <meta name="description" content="A sleek, single‑file Justin Bieber fanpage with gallery, discography, highlights, and fun interactions — all in one HTML file (HTML+CSS+JS)." />
+  <style>
+    :root{
+      --bg: #0b0b12;
+      --panel: rgba(255,255,255,0.06);
+      --text: #f5f7fb;
+      --muted: #cbd3e1;
+      --accent1: #ff7ee2;
+      --accent2: #6bc7ff;
+      --accent3: #b4ff8b;
+      --card: rgba(255,255,255,0.08);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius-xl: 22px;
+      --radius: 14px;
+      --maxw: 1100px;
+    }
+    [data-theme="light"]{
+      --bg: #f7f9fc;
+      --panel: rgba(10,10,15,0.06);
+      --text: #0c1020;
+      --muted: #3a4155;
+      --card: rgba(10,10,15,0.05);
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(255,126,226,0.20), transparent 60%),
+        radial-gradient(1000px 500px at 110% 10%, rgba(107,199,255,0.18), transparent 60%),
+        radial-gradient(1200px 700px at 50% 120%, rgba(180,255,139,0.14), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.6;
+    }
+    .container{max-width:var(--maxw); margin:0 auto; padding:0 20px}
+
+    /* Header / Nav */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: saturate(1.2) blur(10px);
+      background:linear-gradient(180deg, rgba(10,10,15,0.62), rgba(10,10,15,0.38));
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+    nav{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.4px}
+    .brand .logo{
+      width:34px; height:34px; border-radius:50%; display:grid; place-items:center; box-shadow:var(--shadow);
+      background: conic-gradient(from 180deg at 50% 50%, var(--accent1), var(--accent2), var(--accent3), var(--accent1));
+    }
+    .brand span{font-size:1.05rem}
+    .navlinks a{
+      color:var(--muted); text-decoration:none; padding:10px 12px; border-radius:999px; transition:.2s ease; font-weight:600; font-size:.95rem;
+    }
+    .navlinks a:hover{background:var(--panel); color:var(--text)}
+    .actions{display:flex; gap:10px; align-items:center}
+    .btn{border:0; border-radius:999px; padding:10px 16px; font-weight:700; cursor:pointer; background:var(--card); color:var(--text); box-shadow:var(--shadow)}
+    .btn.primary{background:linear-gradient(135deg, var(--accent1), var(--accent2)); color:#0b0b12}
+    .btn.ghost{background:transparent; border:1px solid rgba(255,255,255,0.18); color:var(--text)}
+    .theme-toggle{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,0.18);background:var(--card);cursor:pointer}
+
+    /* Hero */
+    .hero{padding:70px 0 40px}
+    .hero .wrap{display:grid; grid-template-columns: 1.25fr 1fr; gap:30px; align-items:center}
+    .title{
+      font-size:clamp(2rem, 4vw, 3rem); font-weight:900; line-height:1.12; margin:0 0 10px;
+      background:linear-gradient(90deg, var(--text), var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .subtitle{color:var(--muted); font-size:1.05rem}
+    .cta{display:flex; gap:12px; margin-top:16px}
+    .statbar{display:flex; gap:18px; margin-top:20px; flex-wrap:wrap}
+    .stat{background:var(--card); padding:10px 14px; border-radius:12px; font-weight:700}
+    .hero-card{background:var(--card); border:1px solid rgba(255,255,255,0.1); border-radius:var(--radius-xl); overflow:hidden; box-shadow:var(--shadow)}
+    .hero-card .img{aspect-ratio: 16/11; width:100%; background-position:center; background-size:cover}
+    .hero-card .cap{padding:14px; font-weight:700; color:var(--muted)}
+
+    /* Sections */
+    section{padding:42px 0}
+    h2{margin:0 0 18px; font-size:1.6rem}
+    .grid{display:grid; gap:16px}
+    .grid.cards{grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))}
+    .card{background:var(--card); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .chip{display:inline-block; padding:6px 10px; border-radius:999px; background:linear-gradient(135deg, var(--accent1), var(--accent2)); color:#0b0b12; font-weight:800; font-size:.75rem; letter-spacing:.3px}
+
+    /* Discography */
+    .album{display:grid; grid-template-columns: 90px 1fr; gap:14px; align-items:center}
+    .album img{width:90px;height:90px;object-fit:cover;border-radius:12px}
+    .album .meta{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .badge{font-size:.75rem; padding:5px 8px; border-radius:999px; border:1px solid rgba(255,255,255,0.24); color:var(--muted)}
+
+    /* Gallery */
+    .gallery{display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px}
+    .gallery img{width:100%; height:180px; object-fit:cover; border-radius:12px; cursor:pointer; transition:.25s ease; border:1px solid rgba(255,255,255,0.08)}
+    .gallery img:hover{transform:translateY(-2px)}
+    .lightbox{position:fixed; inset:0; background:rgba(0,0,0,0.8); display:none; align-items:center; justify-content:center; padding:20px}
+    .lightbox img{max-width:min(100%, 900px); max-height:80vh; border-radius:16px}
+
+    /* Timeline */
+    .timeline{position:relative; padding-left:26px}
+    .timeline::before{content:""; position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(var(--accent1), var(--accent2))}
+    .titem{position:relative; margin:18px 0; padding-left:10px}
+    .titem::before{content:""; position:absolute; left:-21px; top:5px; width:14px; height:14px; border-radius:50%; background:linear-gradient(135deg, var(--accent2), var(--accent1)); box-shadow:0 0 0 4px rgba(255,255,255,0.08)}
+
+    /* Footer */
+    footer{padding:50px 0 70px; color:var(--muted); text-align:center}
+    .links{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+    .links a{display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:var(--text); padding:10px 14px; border:1px solid rgba(255,255,255,0.14); border-radius:999px; background:var(--card)}
+
+    /* Floating */
+    #top{position:fixed; right:16px; bottom:16px; width:48px; height:48px; border-radius:50%; border:1px solid rgba(255,255,255,0.2); background:var(--card); display:grid; place-items:center; cursor:pointer; box-shadow:var(--shadow); opacity:0; transform:translateY(8px); transition:.2s}
+    #top.show{opacity:1; transform:none}
+
+    /* Utility */
+    .muted{color:var(--muted)}
+    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .sr{position:absolute; left:-9999px}
+
+    @media (max-width: 900px){
+      .hero .wrap{grid-template-columns: 1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand"><div class="logo" aria-hidden="true"></div><span>Belieber Hub</span></div>
+        <div class="navlinks" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#discography">Discography</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#highlights">Highlights</a>
+          <a href="#join">Join</a>
+        </div>
+        <div class="actions">
+          <button id="shareBtn" class="btn ghost" title="Share this page">Share</button>
+          <button id="themeBtn" class="theme-toggle" aria-label="Toggle theme">☾</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero container" id="home">
+      <div class="wrap">
+        <div>
+          <p class="chip">Unofficial Fanpage</p>
+          <h1 class="title">Justin Bieber — music, moments & a global fan family</h1>
+          <p class="subtitle">Welcome to your one‑page Belieber home. Explore albums, relive iconic eras, browse a fan gallery, and join the newsletter — all in one sleek page.</p>
+          <div class="cta">
+            <a class="btn primary" href="#discography">Explore Discography</a>
+            <a class="btn" href="#gallery">Open Gallery</a>
+          </div>
+          <div class="statbar" role="list">
+            <div class="stat" role="listitem">⋆ Fan‑made • For fun</div>
+            <div class="stat" role="listitem">⋆ Smooth scroll • Light/Dark</div>
+            <div class="stat" role="listitem">⋆ 100% single file</div>
+          </div>
+        </div>
+        <figure class="hero-card">
+          <!-- Tip: Replace the URL below with your favorite royalty‑free or personal photo of Justin Bieber. -->
+          <div class="img" style="background-image:url('https://images.unsplash.com/photo-1521335629791-ce4aec67ddaf?q=80&w=1600&auto=format&fit=crop');" aria-label="Stage lights and crowd silhouette"></div>
+          <figcaption class="cap">“When you’ve got that purpose, nothing can stop you.” — Fan mantra</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <h2>About Justin</h2>
+        <div class="grid cards">
+          <article class="card">
+            <h3>Artist • Performer • Collaborator</h3>
+            <p>Justin Bieber is a Canadian singer and performer who rose to global fame in his teens. Across pop, R&B and electronic influences, he’s known for chart‑topping hits, high‑energy tours, and collaborations with major artists. This page celebrates the artistry and the community around it.</p>
+            <p class="muted">Note: This is a fan‑made site. Replace images and text with your own favorites as you customize!</p>
+          </article>
+          <article class="card">
+            <h3>Belieber Spirit</h3>
+            <p>Beliebers lift each other up. Use this page to share memories, swap playlists, and keep the good vibes going. Spread kindness, respect creators, and support official releases and tours.</p>
+            <div class="row muted" aria-label="Social links (placeholders)">
+              <a class="btn" href="#" title="Spotify (replace with official)">Spotify</a>
+              <a class="btn" href="#" title="YouTube (replace with official)">YouTube</a>
+              <a class="btn" href="#" title="Instagram (replace with official)">Instagram</a>
+              <a class="btn" href="#" title="X/Twitter (replace with official)">X</a>
+            </div>
+          </article>
+          <article class="card">
+            <h3>How to Customize</h3>
+            <ul>
+              <li>Edit the <strong>gallery URLs</strong> to your preferred photos.</li>
+              <li>Update <strong>news & highlights</strong> in the script section.</li>
+              <li>Swap album art thumbnails for your own images.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- DISCOGRAPHY -->
+    <section id="discography">
+      <div class="container">
+        <h2>Discography (fan picks)</h2>
+        <div class="grid cards" id="albums">
+          <!-- Filled by JS so it’s easy to tweak -->
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="container">
+        <h2>Gallery</h2>
+        <p class="muted">Tip: Replace these image URLs with your own favorites. Avoid posting anything you don’t have the rights to share.</p>
+        <div class="gallery" id="galleryGrid" aria-live="polite">
+          <!-- Images injected by JS -->
+        </div>
+        <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+          <img alt="Expanded view" />
+        </div>
+      </div>
+    </section>
+
+    <!-- HIGHLIGHTS / TIMELINE -->
+    <section id="highlights">
+      <div class="container">
+        <h2>Career Highlights</h2>
+        <div class="timeline" id="timeline">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER / JOIN -->
+    <section id="join">
+      <div class="container">
+        <h2>Join the Newsletter</h2>
+        <div class="grid cards">
+          <form class="card" id="joinForm" aria-label="Join the newsletter">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.18);background:var(--panel);color:var(--text);margin:6px 0 12px">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@email.com" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.18);background:var(--panel);color:var(--text);margin:6px 0 12px">
+            <div class="row" style="justify-content:space-between; align-items:center">
+              <button class="btn primary" type="submit">Join</button>
+              <label class="row muted" style="gap:6px"><input type="checkbox" id="agree" required> I agree to receive updates</label>
+            </div>
+            <p id="joinMsg" class="muted" role="status" style="margin-top:10px"></p>
+          </form>
+
+          <article class="card">
+            <h3>What you’ll get</h3>
+            <ul>
+              <li>Fan meetups & playlist swaps</li>
+              <li>Major release reminders</li>
+              <li>Exclusive fan art spotlights</li>
+            </ul>
+            <p class="muted">Your info is stored in your browser only (demo). No server involved.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <p>Made with ❤ by fans. This is a non‑commercial, unofficial fanpage. Please support official releases, tours & merch.</p>
+    <div class="links">
+      <a href="#home">Back to start</a>
+      <a href="#discography">Discography</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#join">Newsletter</a>
+    </div>
+  </footer>
+
+  <button id="top" aria-label="Back to top" title="Back to top">↑</button>
+
+  <script>
+    // ===== THEME TOGGLE =====
+    const root = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme){ document.documentElement.setAttribute('data-theme', savedTheme); themeBtn.textContent = savedTheme === 'light' ? '☼' : '☾'; }
+    themeBtn.addEventListener('click', ()=>{
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      const next = isLight ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      themeBtn.textContent = next === 'light' ? '☼' : '☾';
+    });
+
+    // ===== DISC0GRAPHY DATA =====
+    const albums = [
+      { title: 'My World 2.0', year: 2010, era: 'Pop', art: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1000&auto=format&fit=crop', picks: ['Baby', 'Somebody to Love', 'U Smile'] },
+      { title: 'Journals', year: 2013, era: 'R&B / Pop', art: 'https://images.unsplash.com/photo-1603481588273-51d3c0b1bd88?q=80&w=1000&auto=format&fit=crop', picks: ['All That Matters', 'Confident'] },
+      { title: 'Purpose', year: 2015, era: 'Pop / EDM', art: 'https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?q=80&w=1000&auto=format&fit=crop', picks: ['Sorry', 'Love Yourself', 'What Do You Mean?'] },
+      { title: 'Changes', year: 2020, era: 'R&B / Pop', art: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1000&auto=format&fit=crop', picks: ['Yummy', 'Intentions'] },
+      { title: 'Justice', year: 2021, era: 'Pop', art: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1000&auto=format&fit=crop', picks: ['Peaches', 'Hold On'] },
+    ];
+
+    const albumsWrap = document.getElementById('albums');
+    albums.forEach(a=>{
+      const c = document.createElement('article');
+      c.className = 'card';
+      c.innerHTML = `
+        <div class="album">
+          <img src="${a.art}" alt="Cover art placeholder for ${a.title}">
+          <div>
+            <h3 style="margin:0 0 4px">${a.title} <span class="badge">${a.year}</span></h3>
+            <div class="meta"><span class="badge">${a.era}</span></div>
+            <p class="muted" style="margin:.4rem 0 0">Fan picks: ${a.picks.join(', ')}</p>
+          </div>
+        </div>`;
+      albumsWrap.appendChild(c);
+    });
+
+    // ===== GALLERY =====
+    const gallery = [
+      'https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1484439780119-3971c265ea1b?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1515165562835-c3b8c0a0c3fe?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1445404590072-16ef9c18bd83?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=1200&auto=format&fit=crop'
+    ];
+
+    const grid = document.getElementById('galleryGrid');
+    gallery.forEach((src,i)=>{
+      const img = document.createElement('img');
+      img.loading = 'lazy';
+      img.src = src;
+      img.alt = 'Concert photo placeholder #' + (i+1);
+      img.addEventListener('click', ()=>openLightbox(src));
+      grid.appendChild(img);
+    });
+
+    const lb = document.getElementById('lightbox');
+    const lbImg = lb.querySelector('img');
+    function openLightbox(src){ lbImg.src = src; lb.style.display = 'flex'; }
+    lb.addEventListener('click', e=>{ if(e.target === lb) lb.style.display='none'; });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') lb.style.display='none'; });
+
+    // ===== HIGHLIGHTS / TIMELINE =====
+    const highlights = [
+      { year: 'Breakthrough', text: 'Viral discovery leads to a record deal and rapid global attention.' },
+      { year: 'Debut Era', text: 'Early releases spark a dedicated fanbase and chart success.' },
+      { year: 'World Tours', text: 'High‑energy shows, choreography, and stadium moments.' },
+      { year: 'Purpose Era', text: 'A polished sound fusing pop and EDM defines an iconic chapter.' },
+      { year: 'Collaborations', text: 'Features and remixes with top artists broaden musical range.' },
+      { year: 'Recent Years', text: 'Continuing to experiment, perform, and connect with fans worldwide.' }
+    ];
+
+    const tl = document.getElementById('timeline');
+    highlights.forEach(h=>{
+      const item = document.createElement('div');
+      item.className = 'titem card';
+      item.innerHTML = `<strong>${h.year}</strong><p class="muted" style="margin:.3rem 0 0">${h.text}</p>`;
+      tl.appendChild(item);
+    });
+
+    // ===== NEWSLETTER (local only) =====
+    const form = document.getElementById('joinForm');
+    const msg = document.getElementById('joinMsg');
+    form.addEventListener('submit', e=>{
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      if(!document.getElementById('agree').checked){ msg.textContent = 'Please agree to receive updates.'; return; }
+      // Save locally as a demo (no backend)
+      const list = JSON.parse(localStorage.getItem('belieber_list')||'[]');
+      list.push({ name: data.name, email: data.email, time: new Date().toISOString() });
+      localStorage.setItem('belieber_list', JSON.stringify(list));
+      form.reset();
+      msg.textContent = 'Welcome aboard! Check your inbox (pretend ✉️).';
+    });
+
+    // ===== SHARE BUTTON =====
+    document.getElementById('shareBtn').addEventListener('click', async ()=>{
+      const payload = { title:'Belieber Hub', text:'Check out this Justin Bieber fanpage!', url: location.href };
+      if(navigator.share){ await navigator.share(payload).catch(()=>{}); }
+      else{ navigator.clipboard.writeText(location.href); alert('Link copied to clipboard!'); }
+    });
+
+    // ===== BACK TO TOP =====
+    const topBtn = document.getElementById('top');
+    window.addEventListener('scroll', ()=>{
+      const show = window.scrollY > 500; topBtn.classList.toggle('show', show);
+    });
+    topBtn.addEventListener('click', ()=>{ window.scrollTo({ top:0, behavior:'smooth' }); });
+
+    // ===== SMOOTH NAV LINKS =====
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id.length>1){ e.preventDefault(); document.querySelector(id).scrollIntoView({behavior:'smooth'}); }
+      });
+    });
+  </script>
+</body>
+</html>
