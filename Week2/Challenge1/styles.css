@@ -1,0 +1,162 @@
+/* styles.css - Challenge #1 (Skeleton) */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #f8f9ff;
+    margin: 0px;
+}
+
+.container {
+    justify-content: center;
+}
+
+p {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+h1{
+    font-size:50px;
+}
+
+h1 {
+    text-align: center;
+    color: #e91e63;
+}
+
+p {
+    font-style: italic;
+}
+
+.mascot-placeholder {
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 10%;
+    
+    max-width: 300px;
+    margin: 0;
+    height: 250px;
+    background-color: white;
+    display: block;
+    margin: auto;
+    position: relative;
+}
+
+
+#mascot-image{
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+}
+
+header.site-header {
+    text-align: center;
+}
+
+footer {
+    border-top: 1px solid grey;
+    text-align: center;
+    color: #abacae;
+}
+
+section.about {
+    padding: 10px;
+    text-align: left;
+}
+section h2{
+    padding-left: 10px;
+}
+.actions{
+    display: flex;
+    align-items: center;
+}
+section p{
+    line-height: 30px;
+}
+
+.buy-tickets{
+    display: inline-block;
+    margin: auto;
+    font-size: 15px;
+    border-radius: 15px;
+    background-color: green;
+    color: white;
+    margin-right: 1%;
+    box-shadow: 4px 4px 4px 4px #adf2ff;
+    margin-bottom: 10%;
+    padding: 10px;
+    font-weight: bold;    
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 0px ;
+}
+.make-donation{
+    /* display: inline-block; */
+    margin: auto;
+    font-size: 15px;
+    border-radius: 15px;
+    background-color: blue;
+    color: white;
+    float:left;
+    margin-left:1%;
+    margin-bottom: 5px;
+    box-shadow: 4px 4px 4px 4px #fabef5;
+    margin-bottom: 10%;
+    padding: 10px;
+    font-weight: bold;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 0px ;
+}
+
+.about{
+    text-align: left;
+}
+.container{
+    margin: auto;
+    /* Maximum width according to the viewport */
+    max-width: 800px;
+}
+p[class=tagline]{
+    padding-top: 0px;
+}
+.buy-tickets:hover{
+    cursor: pointer;
+    background-color: #167509;
+    transform: scale(1.2,1.2);
+}
+.make-donation:hover{
+    cursor: pointer;
+    background-color: #00008B;
+    transform: scale(1.2,1.2);
+}
+.actions{
+    margin: auto;
+    max-width: 380px;
+    display: flex;
+}
+@media screen and (max-width: 380px){
+    .actions{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .buy-tickets{
+        margin: auto;
+        margin-bottom: 10px;
+    }
+    .make-donation{
+        margin: auto;
+        margin-bottom: 10px;
+    }
+}
+footer p{
+    font-style: normal;
+}
+
+.about p{
+    font-style: normal;
+}
