@@ -146,7 +146,7 @@ button[id=marker-river]{
 .tooltip{
    display: none;
 }
-button{
+button:hover{
    .tooltip{
       display:flex;
       flex-direction: column-reverse;
