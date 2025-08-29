@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    background-color: rgb(124, 166, 180);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    margin: auto;
+    max-width: 900px;
+}
+
+.upper {
+    display: flex;
+    column-gap: 5%;
+}
+
+#imageSelf {
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 400px;
+}
+
+.imageColumn {
+    overflow: hidden;
+    width: 40%;
+    border: 2px dashed grey;
+    border-radius: 100px;
+    display: inline-block;
+}
+
+.myselfInfo {
+    display: inline-block;
+    border-radius: 100px;
+    background: rgb(234, 231, 231);
+    width: 50%;
+    overflow: hidden;
+    padding: 15px;
+    border: 2px solid grey;
+    line-height: 140%;
+}
+
+h1 {
+    text-align: center;
+    margin: auto;
+    margin-bottom: 5%;
+    color: rgb(216, 213, 213);
+}
+
+.myselfInfo:hover,
+.imageColumn:hover {
+    transform: scale(1.1);
+}
+
+.lower {
+    position: relative;
+}
+
+.lower h2 {
+    text-align: center;
+}
+
+#mapWorld {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+button {
+    background-color: rgb(239, 164, 176);
+    width: 15px;
+    height: 15px;
+    border: 2px solid white;
+    border-radius: 20px;
+}
+
+#china {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+}
+
+#korea {
+    position: absolute;
+    bottom: 50%;
+    right: 40%;
+}
+
+#taiwan {
+    position: absolute;
+    bottom: 38%;
+    right: 35%;
+}
+
+#malaysia {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+}
+
+.tooltip {
+    visibility: hidden;
+}
+
+#china:hover {
+    .tooltip {
+        visibility: visible;
+        background-color: black;
+        color: white;
+        padding: 5px;
+        border-radius: 20px;
+    }
+}
+
+#taiwan:hover {
+    .tooltip {
+        visibility: visible;
+        background-color: black;
+        color: white;
+        padding: 5px;
+        border-radius: 20px;
+    }
+}
+
+#korea:hover {
+    .tooltip {
+        visibility: visible;
+        background-color: black;
+        color: white;
+        padding: 5px;
+        border-radius: 20px;
+    }
+}
+
+#malaysia:hover {
+    .tooltip {
+        visibility: visible;
+        background-color: black;
+        color: white;
+        padding: 5px;
+        border-radius: 20px;
+    }
+}
+
+.videoFrame h2 {
+    text-align: center;
+}
+
+iframe {
+    border-radius: 20px;
+    width: 100%;
+}
+
+.videoFrame {
+    position: relative;
+}
+
+button[id=back-to-top] {
+    position: absolute;
+    bottom: -10%;
+    right: 0px;
+    width: 20%;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 10%;
+}
+
+section {
+    text-align: center;
+}
+
+section button {
+    margin-top: 10px;
+    width: 50%;
+    height: 20%;
+    font-size: 20px;
+}
+
+section button:hover {
+    box-shadow: 5px 5px 5px 5px greenyellow;
+    transform: scale(1.1);
+}
+
+.sideBySideCard {
+    margin-top: 10px;
+    display: flex;
+    gap:5%;
+    flex-direction: horizontal;
+    flex-wrap:wrap;
+    row-gap: 0.5em;
+}
+
+.sideBySideCard img{
+    height: 100px;
+    width: 100%;
+}
+.twCard {
+    background-color: rgb(238, 224, 224);
+    border-radius: 10px;
+    width: 29%;
+    border: 2px solid black;
+    overflow: hidden;
+}
+
+.malaysiaCard {
+    background-color: rgb(238, 224, 224);
+    border-radius: 10px;
+    width: 29%;
+    border: 2px solid black;
+    overflow: hidden;
+}
+
+.chinaCard {
+    background-color: rgb(238, 224, 224);
+    border-radius: 10px;
+    width: 29%;
+    border: 2px solid black;
+    overflow: hidden;
+}
+
+.colCard img{
+    width: 100%;
+    height: 20rem;
+}
+.koreaCard {
+    margin-top: 10%;
+    border-radius: 10px;
+    background-color: rgb(238, 224, 224);
+    overflow: hidden;
+    border: 2px solid black;
+    width: 100%;
+}
+.colCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    </style>
+    <script>
+        function navigateSite(){
+            window.location.href = "https://www.flyscoot.com/en?origin=SIN&destination=BKK&gclsrc=aw.ds&gad_source=1&gad_campaignid=22172933408&gclid=Cj0KCQjwn8XFBhCxARIsAMyH8BtgiXSoIXjIFxYT39on3hZ09xn0nZaGRYzF3PvB73chR0w1Dkb5ejsaAksaEALw_wcB";
+        }    
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to my awesome homepage everyone!</h1>
+        <div class="upper">
+            
+            <div class="imageColumn">
+                <img src="self.jpeg" alt="selfImage" id="imageSelf">
+            </div>
+            <div class="myselfInfo">
+                <h2>Nicholas Soh De Lin</h2>
+                <p>My name is as above, I am currently a year 2 software engineering student.</p>
+                <p>Here are some languages I have worked with before:</p>
+                <ul>
+                    <li>English</li>
+                    <li>Chinese</li>
+                    <li>Python</li>
+                    <li>Java</li>
+                    <li>Javascript</li>
+                </ul>
+                <p>In my free time, I like to doomscroll, watch tiktok, mess around, eat good food and be lazy hehe</p>
+            </div>
+        </div>
+
+        <div class="lower">
+            <h2>Here are some countries that I have went to before</h2>
+            <img src = "image.png" alt="World Map" id="mapWorld">
+            <div class="markers">
+                <button id="china">
+                    <span class="tooltip">China</span>
+                </button>
+                <button id="korea"><span class="tooltip">Korea</span></button>
+                <button id="taiwan"><span class="tooltip">Taiwan</span></button>
+                <button id="malaysia"><span class="tooltip">Malaysia</span></button>
+            </div>
+        </div>
+        <div class="videoFrame">
+            <h2>Amongst all, my favourite country is.. here is a video!</h2>
+            <!-- Rel works -->
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/NtNeblBqNYI?si=CPM4POBZislyQXDM?rel=0&autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen mute =1></iframe>
+            <section>
+                <button onclick="navigateSite()">Please buy me some tickets to clear Global Exposure</button>
+            </section>
+        </div>
+        <div class="sideBySideCard">
+            <div class="twCard">
+                <img src ="https://media.istockphoto.com/id/604373174/photo/skyline-of-taipei-city.jpg?s=612x612&w=0&k=20&c=APMupn0QridSfL7N1VjH7dAlPgVT7QSWJipfk9OV_C4=">
+                <h4>Taiwan</h4>
+                <p>Taipei is fun</p>
+            </div>
+
+            <div class="malaysiaCard">
+                <img src ="https://media.istockphoto.com/id/466842820/photo/petronas-towers.jpg?s=612x612&w=0&k=20&c=X_Kl-W_ulJEzjvaaT8gRNTQWHboyLKaedXol5EPhGdI=">
+                <h4>JB</h4>
+                <p>JB is fun</p>
+            </div>
+
+            <div class="chinaCard">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFXMcs36-t8WkW4jXKg3sIMOG41OVV1jo7ZQ&s" alt="">
+                <h4>Shenzhen</h4>
+                <p>Shenzhen is fun</p>
+            </div>
+        </div>
+        <div class="colCard">
+
+            <div class="koreaCard">
+                <img src="https://media.istockphoto.com/id/464629385/photo/seoul-skyline.jpg?s=612x612&w=0&k=20&c=Wo9LYxk6L9z0VORPkMxjubMcAZfWAJtRJWVfiJR8jmw=" alt="">
+                <h4>Korea</h4>
+                <p>Seoul and busan is fun</p>
+            </div>
+
+            <div class="koreaCard">
+                <img src="https://media.istockphoto.com/id/464629385/photo/seoul-skyline.jpg?s=612x612&w=0&k=20&c=Wo9LYxk6L9z0VORPkMxjubMcAZfWAJtRJWVfiJR8jmw=" alt="">
+                <h4>Korea</h4>
+                <p>Iw to go Seoul</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
