@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
     <style>
         body {
     background-color: rgb(124, 166, 180);
     font-family: Arial, Helvetica, sans-serif;
 }
-
-.container {
-    margin: auto;
-    max-width: 900px;
-}
-
 .upper {
     display: flex;
     column-gap: 5%;
@@ -254,13 +253,18 @@ section button:hover {
 
 <body>
     <div class="container">
-        <h1>Welcome to my awesome homepage everyone!</h1>
+        <div class="row bg-success pt-5 mb-5">
+            <h1>Welcome to my awesome homepage everyone!</h1>
+            <p class="text-center fw-bold">I am trying to make a Jumbotron here, just cool vibes</p>
+
+        </div>
+        
         <div class="upper">
             
             <div class="imageColumn">
-                <img src="self.jpeg" alt="selfImage" id="imageSelf">
+                <img src="https://media.licdn.com/dms/image/v2/D5603AQHXvnF0hIjldw/profile-displayphoto-shrink_400_400/B56ZR.NXekGoAg-/0/1737284222312?e=1759968000&v=beta&t=56aBEjfTTRQdQXpdlCpvVj6HbPLQ3Sf4AhT6t3SiOC0" alt="selfImage" id="imageSelf">
             </div>
-            <div class="myselfInfo">
+            <div class="myselfInfo p-5">
                 <h2>Nicholas Soh De Lin</h2>
                 <p>My name is as above, I am currently a year 2 software engineering student.</p>
                 <p>Here are some languages I have worked with before:</p>
@@ -271,20 +275,23 @@ section button:hover {
                     <li>Java</li>
                     <li>Javascript</li>
                 </ul>
-                <p>In my free time, I like to doomscroll, watch tiktok, mess around, eat good food and be lazy hehe</p>
+                <p >In my free time, I like to doomscroll, watch tiktok, mess around, eat good food and be lazy hehe</p>
             </div>
+
+            
+            
         </div>
 
         <div class="lower">
-            <h2>Here are some countries that I have went to before</h2>
+            <h2 class="mt-4">Here are some countries that I have went to before</h2>
             <img src = "https://i.pinimg.com/736x/e6/22/ac/e622ac0025be77f0262a17278bbe93c6.jpg" alt="World Map" id="mapWorld">
             <div class="markers">
                 <button id="china">
                     <span class="tooltip">China</span>
                 </button>
-                <button id="korea"><span class="tooltip">Korea</span></button>
-                <button id="taiwan"><span class="tooltip">Taiwan</span></button>
-                <button id="malaysia"><span class="tooltip">Malaysia</span></button>
+                <button id="korea" data-toggle="tooltip" data-placement="top" title="Korea"><span class="tooltip">Korea</span></button>
+                <button id="taiwan" data-toggle="tooltip" data-placement="top" title="Taiwan"><span class="tooltip">Taiwan</span></button>
+                <button id="malaysia" data-toggle="tooltip" data-placement="top" title="Malaysia" ><span class="tooltip">Malaysia</span></button>
             </div>
         </div>
         <div class="videoFrame">
