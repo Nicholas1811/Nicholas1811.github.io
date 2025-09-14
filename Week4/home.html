@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 4 - Javascript Examples</title>
+
+</head>
+<body>
+    <h1>Welcome to my Homepage</h1>
+
+    <p>Paragraph 1</p>
+
+    <p>Paragraph 2</p>
+
+    <p>Paragraph 3</p>
+
+    <p>Paragraph 4</p>
+    
+    <h1 id="greeting">
+        <span style="color:blue"> welcome</span>
+    </h1>
+</body>
+    <script>
+        let doc = document.getElementById('greeting');
+        console.log(doc.innerText)
+         console.log(doc.innerHTML)
+          console.log(doc.textContent)
+
+        let pTags = document.getElementsByTagName('p')
+        for(p of pTags){
+            console.log(p)
+        }
+    </script>
+</html>
